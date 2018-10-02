@@ -18,7 +18,7 @@
 			<h1>Subjects</h1>
 
 			<div class="actions">
-				<a class="action" href="">Create New Subject</a>
+				<a class="action btn btn-outline-info" href="">Create New Subject</a>
 			</div>
 
 
@@ -42,9 +42,9 @@
 					      <td><?php echo $subject['position']; ?></td>
 					      <td><?php echo $subject['visible'] == 1 ? 'true' : 'false'; ?></td>
 					      <td><?php echo $subject['menu_name']; ?></td>
-					      <td><a href="<?php echo url_for('/staff/subjects/show.php?id=' . $subject['id']); ?>" class="action">View</a></td>
-					      <td><a href="" class="action">Edit</a></td>
-					      <td><a href="" class="action">Delete</a></td>
+					      <td><a href="<?php echo url_for('/staff/subjects/show.php?id=' . $subject['id']); ?>" class="action btn btn-sm btn-outline-info">View</a></td>
+					      <td><a href="" class="action btn btn-sm btn-outline-info">Edit</a></td>
+					      <td><a href="" class="action btn btn-sm btn-outline-info">Delete</a></td>
 					    </tr>
 			  	<?php	} ?>
 			    
