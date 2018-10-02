@@ -10,7 +10,7 @@
     <meta charset="utf-8">
 
 	<!-- <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css"> -->
-    <link rel="stylesheet" href="../stylesheets/staff.css">
+    <link rel="stylesheet" href="<?php echo url_for('/stylesheets/staff.css'); ?>">
   </head>
 
   <body class="Site">
@@ -21,6 +21,6 @@
 
 	<nav>
 		<ul>
-			<li><a href="index.php">Menu</a></li>
+			<li><a href="<?php echo url_for('/staff/index.php'); ?>">Menu</a></li>
 		</ul>
 	</nav>
