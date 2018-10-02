@@ -1,8 +1,12 @@
+<?php  
+	if (!isset($page_title)) $page_title = 'Staff Area';	
+?>
+
 <!doctype html>
 
 <html lang="en">
   <head>
-    <title>GBI</title>
+    <title>GBI - <?php echo $page_title; ?></title>
     <meta charset="utf-8">
 
 	<!-- <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css"> -->
