@@ -2,11 +2,14 @@
 
 <html lang="en">
   <head>
-    <title></title>
+    <title>Globe Bank</title>
     <meta charset="utf-8">
   </head>
 
   <body>
-	<h1>Welcome to Globe Bank</h1>
+	
+	<h1>Globe Bank: Coming Soon</h1>
+
+
   </body>
 </html>
