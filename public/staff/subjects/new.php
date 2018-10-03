@@ -25,15 +25,15 @@ if ($test == '404') {
 	<div class="subject new">
 		<h2 class="mt-4">Create Subject</h2>
 
-		<form action="" method="post">
+		<form action="<?php echo url_for('/staff/subjects/create.php'); ?>" method="post">
 		  <fieldset>
 		    <div class="form-group">
 		      <label for="menu-mame">Menu Name</label>
-		      <input type="text" id="menu-name" class="form-control" placeholder="">
+		      <input type="text" name="menu_name" class="form-control" placeholder="">
 		    </div>
 		    <div class="form-group">
 		      <label for="">Position</label>
-		      <select id="position" class="form-control">
+		      <select name="position" class="form-control">
 		        <option value="1">1</option>
 		      </select>
 		    </div>
