@@ -15,15 +15,15 @@ if ($test == '404') {
 
 ?>
 
-<?php $page_title = 'Create Subject'; ?>
+<?php $page_title = 'Edit Subject'; ?>
 <?php include(SHARED_PATH . '/staff_header.php'); ?>
 
 <div id="content">
 	
 	<a class="btn btn-sm btn-info back-link" href="<?php echo url_for('/staff/subjects/index.php'); ?>">&laquo; Back to List</a>
 
-	<div class="subject new">
-		<h2 class="mt-4">Create Subject</h2>
+	<div class="subject edit">
+		<h2 class="mt-4">Edit Subject</h2>
 
 		<form action="" method="post">
 		  <fieldset>
@@ -44,7 +44,7 @@ if ($test == '404') {
 		        Visible
 		      </label>
 		    </div>
-		    <button type="submit" class="btn btn-info mt-4">Create Subject</button>
+		    <button type="submit" class="btn btn-info mt-4">Edit Subject</button>
 		  </fieldset>
 		</form>
 	</div>
