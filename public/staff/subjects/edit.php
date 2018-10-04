@@ -42,17 +42,17 @@ if(is_post_request()) {
 		  <fieldset>
 		    <div class="form-group">
 		      <label for="menu-mame">Menu Name</label>
-		      <input type="text" name="menu_name" class="form-control" value="<?php echo $menu_name; ?>">
+		      <input type="text" name="menu_name" class="form-control" value="<?php echo h($menu_name); ?>">
 		    </div>
 		    <div class="form-group">
 		      <label for="">Position</label>
 		      <select name="position" class="form-control">
-		        <option value="1">1</option>
+		        <option value="1" <?php if ($position == 1) echo 'selected'; ?>>1</option>
 		      </select>
 		    </div>
 		    <div class="form-check">
 		      <input class="form-check-input" type="hidden" name="visible" value="0">
-		      <input class="form-check-input" type="checkbox" name="visible" value="1">
+		      <input class="form-check-input" type="checkbox" name="visible" value="1" <?php if ($visible == 1) echo 'checked'; ?>>
 		      <label class="form-check-label" for="">
 		        Visible
 		      </label>
@@ -65,3 +65,4 @@ if(is_post_request()) {
 </div>
 
 <?php include(SHARED_PATH . '/staff_footer.php'); ?>
+ 

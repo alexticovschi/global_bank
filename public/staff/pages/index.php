@@ -17,7 +17,7 @@
 			<h1>Pages</h1>
 
 			<div class="actions">
-				<a class="action btn btn-outline-info" href="">Create New Page</a>			
+				<a class="action btn btn-outline-info" href="<?php echo url_for('/staff/pages/new.php'); ?>">Create New Page</a>			
 			</div>
 
 			<table class="table list">
@@ -39,7 +39,7 @@
 							<td><?php echo $page['visible'] == 1 ? 'true' : 'false'; ?></td>
 							<td><?php echo h($page['menu_name']); ?></td>
 							<td><a class="action btn btn-sm btn-outline-info" href="<?php echo url_for('/staff/pages/show.php?id=' . h(u($page['id']))); ?>">View</a></td>
-							<td><a class="action btn btn-sm btn-outline-info" href="">Edit</a></td>
+							<td><a class="action btn btn-sm btn-outline-info" href="<?php echo url_for('/staff/pages/edit.php?id=' . h(u($page['id']))); ?>">Edit</a></td>
 							<td><a class="action btn btn-sm btn-outline-info" href="">Delete</a></td>
 						</tr>
 					<?php } ?>
