@@ -13,8 +13,6 @@ $subject = find_subject_by_id($subject_id);
 <?php include(SHARED_PATH . '/staff_header.php'); ?>
 
 	<div id="content">
-
-		
 		<br>
 
 		<div class="subject show text-center container">
