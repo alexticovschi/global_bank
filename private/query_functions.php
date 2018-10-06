@@ -11,6 +11,19 @@ function find_all_subjects() {
 	return $result;
 }
 
+function find_subject_by_id($subject_id) {
+	global $db;
+
+	$query = "SELECT * FROM subjects WHERE id='" . $subject_id . "'";
+	$result = mysqli_query($db, $query);
+	confirm_result($result);
+
+	$subject = mysqli_fetch_assoc($result);
+	mysqli_free_result($result);
+
+	return $subject;
+}
+
 function find_all_pages() {
 	global $db;
 
