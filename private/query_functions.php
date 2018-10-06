@@ -24,14 +24,14 @@ function find_subject_by_id($subject_id) {
 	return $subject;
 }
 
-function insert_subject($menu_name, $position, $visible) {
+function insert_subject($subject) {
 	global $db;
 
 	$query = "INSERT INTO subjects (menu_name, position, visible) ";
 	$query .= "VALUES (";
-	$query .= "'" . $menu_name . "',";
-	$query .= "'" . $position. "',";
-	$query .= "'" . $visible . "'";
+	$query .= "'" . $subject['menu_name'] . "',";
+	$query .= "'" . $subject['position'] . "',";
+	$query .= "'" . $subject['visible'] . "'";
 	$query .= ")";
 
 	$result = mysqli_query($db, $query);
