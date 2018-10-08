@@ -99,4 +99,84 @@ function find_all_pages() {
 	return $result;
 }
 
+function find_page_by_id($page_id) {
+	global $db;
+
+	$query = "SELECT * FROM pages WHERE id='" . $page_id . "'";
+	$result = mysqli_query($db, $query);
+	confirm_result($result);
+
+	$page = mysqli_fetch_assoc($result);
+	mysqli_free_result($result);
+
+	return $page; // returns an associative array
+}
+
+function update_page($page) {
+	global $db;
+
+	$query = "UPDATE pages SET ";
+	$query .= "subject_id='" . $page['subject_id'] .  "', ";
+	$query .= "menu_name='" . $page['menu_name'] . "', ";
+	$query .= "position='" . $page['position'] . "', ";
+	$query .= "visible='" . $page['visible'] . "', ";
+	$query .= "content='" . $page['content'] . "' ";
+	$query .= "WHERE id='" . $page['id'] . "' ";
+	$query .= "LIMIT 1";
+
+	$update_page = mysqli_query($db, $query);
+
+	if($update_page) {
+		return true;
+	} else {
+		// UPDATE failed
+		// Display the error message, disconnect the database and quit everything
+		echo mysqli_error($db);
+		db_disconnect($db);
+		exit;
+	}
+}
+
+function insert_page() {
+	global $db;
+
+	$query = "INSERT INTO pages (subject_id, menu_name, position, visible, content) ";
+	$query .= "VALUES (";
+	$query .= "'" . $page['subject_id'] .  "', ";
+	$query .= "'" . $page['menu_name'] .  "', ";
+	$query .= "'" . $page['position'] .  "', ";
+	$query .= "'" . $page['visible'] .  "', ";
+	$query .= "'" . $page['content'] .  "'";
+	$query .= ")";
+
+	$insert_page = mysqli_query($db, $query);
+
+	if($insert_page) {
+		return true;
+	} else {
+		// INSERT failed
+		// Display the error message, disconnect the database and quit everything
+		echo mysqli_error($db);
+		db_disconnect($db);
+		exit;
+	}
+}
+
+function delete_page($page_id) {
+	global $db;
+
+	$query = "DELETE FROM pages WHERE id='" . $page_id . "' LIMIT 1";
+	$delete_page = mysqli_query($db, $query);
+
+	if($delete_page) {
+		return true;
+	} else {
+		// DELETE failed
+		// Display the error message, disconnect the database and quit everything
+		echo mysqli_error($db);
+		db_disconnect($db);
+		exit;
+	}
+}
+
 ?>
