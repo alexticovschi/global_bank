@@ -93,7 +93,7 @@ mysqli_free_result($pages);
 						</div>
 						
 							<label for="content">Content</label>
-							<textarea class="form-control" rows="8">
+							<textarea name="content" class="form-control" rows="8">
 								<?php echo h($page['content']); ?>
 							</textarea>
 						<button type="submit" class="btn btn-info mt-4">Edit Page</button>
