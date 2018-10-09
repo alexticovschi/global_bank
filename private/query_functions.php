@@ -88,7 +88,7 @@ function find_all_subjects() {
 function find_subject_by_id($subject_id) {
 	global $db;
 
-	$query = "SELECT * FROM subjects WHERE id='" . $subject_id . "'";
+	$query = "SELECT * FROM subjects WHERE id='" . db_escape($db, $subject_id) . "'";
 	$result = mysqli_query($db, $query);
 	confirm_result($result);
 
@@ -108,9 +108,9 @@ function insert_subject($subject) {
 
 	$query = "INSERT INTO subjects (menu_name, position, visible) ";
 	$query .= "VALUES (";
-	$query .= "'" . $subject['menu_name'] . "',";
-	$query .= "'" . $subject['position'] . "',";
-	$query .= "'" . $subject['visible'] . "'";
+	$query .= "'" . db_escape($db, $subject['menu_name']) . "',";
+	$query .= "'" . db_escape($db, $subject['position']) . "',";
+	$query .= "'" . db_escape($db, $subject['visible']) . "'";
 	$query .= ")";
 
 	$result = mysqli_query($db, $query);
@@ -135,10 +135,10 @@ function update_subject($subject) {
 	}
 
 	$query = "UPDATE subjects SET ";
-	$query .= "menu_name='" . $subject['menu_name'] . "', ";
-	$query .= "position='" . $subject['position'] . "', ";
-	$query .= "visible='" . $subject['visible'] . "' ";
-	$query .= "WHERE id='" . $subject['id'] . "' ";
+	$query .= "menu_name='" . db_escape($db, $subject['menu_name']) . "', ";
+	$query .= "position='" . db_escape($db, $subject['position']) . "', ";
+	$query .= "visible='" . db_escape($db, $subject['visible']) . "' ";
+	$query .= "WHERE id='" . db_escape($db, $subject['id']) . "' ";
 	$query .= "LIMIT 1";
 
 	$update_subject = mysqli_query($db, $query);
@@ -157,7 +157,7 @@ function update_subject($subject) {
 function delete_subject($id) {
 	global $db;
 
-	$query = "DELETE FROM subjects WHERE id='" . $id . "' LIMIT 1";
+	$query = "DELETE FROM subjects WHERE id='" . db_escape($db, $id) . "' LIMIT 1";
 	$result = mysqli_query($db, $query);
 
 	// For DELETE statements, $result is true/false
@@ -186,7 +186,7 @@ function find_all_pages() {
 function find_page_by_id($page_id) {
 	global $db;
 
-	$query = "SELECT * FROM pages WHERE id='" . $page_id . "'";
+	$query = "SELECT * FROM pages WHERE id='" . db_escape($db, $page_id) . "'";
 	$result = mysqli_query($db, $query);
 	confirm_result($result);
 
@@ -205,12 +205,12 @@ function update_page($page) {
 	}
 
 	$query = "UPDATE pages SET ";
-	$query .= "subject_id='" . $page['subject_id'] .  "', ";
-	$query .= "menu_name='" . $page['menu_name'] . "', ";
-	$query .= "position='" . $page['position'] . "', ";
-	$query .= "visible='" . $page['visible'] . "', ";
-	$query .= "content='" . $page['content'] . "' ";
-	$query .= "WHERE id='" . $page['id'] . "' ";
+	$query .= "subject_id='" . db_escape($db, $page['subject_id']) .  "', ";
+	$query .= "menu_name='" . db_escape($db, $page['menu_name']) . "', ";
+	$query .= "position='" . db_escape($db, $page['position']) . "', ";
+	$query .= "visible='" . db_escape($db, $page['visible']) . "', ";
+	$query .= "content='" . db_escape($db, $page['content']) . "' ";
+	$query .= "WHERE id='" . db_escape($db, $page['id']) . "' ";
 	$query .= "LIMIT 1";
 
 	$update_page = mysqli_query($db, $query);
@@ -236,11 +236,11 @@ function insert_page($page) {
 
 	$query = "INSERT INTO pages (subject_id, menu_name, position, visible, content) ";
 	$query .= "VALUES (";
-	$query .= "'" . $page['subject_id'] .  "', ";
-	$query .= "'" . $page['menu_name'] .  "', ";
-	$query .= "'" . $page['position'] .  "', ";
-	$query .= "'" . $page['visible'] .  "', ";
-	$query .= "'" . $page['content'] .  "'";
+	$query .= "'" . db_escape($db, $page['subject_id']) .  "', ";
+	$query .= "'" . db_escape($db, $page['menu_name']) .  "', ";
+	$query .= "'" . db_escape($db, $page['position']) .  "', ";
+	$query .= "'" . db_escape($db, $page['visible']) .  "', ";
+	$query .= "'" . db_escape($db, $page['content']) .  "'";
 	$query .= ")";
 
 	$insert_page = mysqli_query($db, $query);
@@ -259,7 +259,7 @@ function insert_page($page) {
 function delete_page($page_id) {
 	global $db;
 
-	$query = "DELETE FROM pages WHERE id='" . $page_id . "' LIMIT 1";
+	$query = "DELETE FROM pages WHERE id='" .db_escape($db,  $page_id) . "' LIMIT 1";
 	$delete_page = mysqli_query($db, $query);
 
 	if($delete_page) {
