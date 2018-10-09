@@ -1,5 +1,35 @@
 <?php  
 
+function validate_subject($subject) {
+	$errors = [];
+
+	// menu name
+	if(is_blank($subject['menu_name'])) {
+		$errors[] = "Name cannot be blank.";
+	} elseif(!has_length($subject['menu_name'], ['min' => 2, 'max' => 255])) {
+		$errors[] = "Name must be between 2 and 255 characters.";
+	}
+
+	// position
+	// Make sure we are working with an integer
+	$position_int = (int)$subject['position'];
+	if($position_int <= 0) {
+		$errors[] = "Position must be greter than zero.";
+	}
+	if($position_int > 999) {
+		$errors[] = "Position must be less than 999.";
+	}
+
+	// visible
+	// Make sure we are working with a string
+	$visible_str = (string)$subject['visible'];
+	if(!has_inclusion_of($visible_str, ["0", "1"])) {
+		$errors[] = "Visible must be true or false.";
+	}
+
+	return $errors;
+}
+
 function find_all_subjects() {
 	global $db;
 
@@ -27,6 +57,11 @@ function find_subject_by_id($subject_id) {
 function insert_subject($subject) {
 	global $db;
 
+	$errors = validate_subject($subject);
+	if(!empty($errors)) {
+		return $errors;
+	}
+
 	$query = "INSERT INTO subjects (menu_name, position, visible) ";
 	$query .= "VALUES (";
 	$query .= "'" . $subject['menu_name'] . "',";
@@ -49,6 +84,11 @@ function insert_subject($subject) {
 
 function update_subject($subject) {
 	global $db;
+
+	$errors = validate_subject($subject);
+	if(!empty($errors)) {
+		return $errors;
+	}
 
 	$query = "UPDATE subjects SET ";
 	$query .= "menu_name='" . $subject['menu_name'] . "', ";
