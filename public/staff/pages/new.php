@@ -11,10 +11,14 @@ if(is_post_request()) {
 	$page['visible'] = $_POST['visible'] ?? '';
 	$page['content'] = $_POST['content'] ?? '';
 
-	$add_page = insert_page($page);
-	$new_id = mysqli_insert_id($db);
-	redirect_to(url_for('/staff/pages/show.php?id' . $new_id));
-
+	$result = insert_page($page);
+	if($result === true) {
+		$new_id = mysqli_insert_id($db);
+		redirect_to(url_for('/staff/pages/show.php?id' . $new_id));
+	} else {
+		$errors = $result;
+	}
+	
 } else {
 
 	$page = [];
@@ -24,11 +28,11 @@ if(is_post_request()) {
 	$page['visible'] = '';
 	$page['content'] = '';
 
-	$pages = find_all_pages();
-	$page_count = mysqli_num_rows($pages) + 1;
-	mysqli_free_result($pages);
-
 }
+
+$pages = find_all_pages();
+$page_count = mysqli_num_rows($pages) + 1;
+mysqli_free_result($pages);
 
 ?>
 
@@ -43,9 +47,11 @@ if(is_post_request()) {
 				<div class="page new">
 					<h2 class="mt-4">Create Page</h2>
 
+					<?php echo display_errors($errors); ?>
 					<form action="<?php echo url_for('/staff/pages/new.php'); ?>" method="post">
 						<fieldset>
 							<div class="form-group">
+								<label class="mt-2" for="subject-name">Subject Name</label>
 								<select name="subject_id" class="form-control">
 									<?php  
 										$subjects = find_all_subjects();
@@ -61,7 +67,7 @@ if(is_post_request()) {
 								</select>
 							</div>
 							<div class="form-group">
-								<label for="menu-mame">Menu Name</label>
+								<label for="menu-name">Menu Name</label>
 								<input type="text" name="menu_name" class="form-control" value="">
 							</div>
 							<div class="form-group">
@@ -91,7 +97,7 @@ if(is_post_request()) {
 									<?php echo h($page['content']); ?>
 								</textarea>
 							</div>
-							<button type="submit" class="btn btn-info mt-4">Create Page</button>
+							<button type="submit" class="btn btn-block btn-info mt-2">Create Page</button>
 						</fieldset>
 					</form>
 				</div>

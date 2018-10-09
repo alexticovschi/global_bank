@@ -19,17 +19,21 @@ if(is_post_request()) {
 	$page['content'] = $_POST['content'] ?? '';
 
 	$result = update_page($page);
-	redirect_to(url_for('/staff/pages/show.php?id=' . $page_id));
+	if($result === true) {
+		redirect_to(url_for('/staff/pages/show.php?id=' . $page_id));
+	} else {
+		$errors = $result;
+	}
 
 } else {
 
 	$page = find_page_by_id($page_id);
 
-	$pages = find_all_pages();
-	$page_count = mysqli_num_rows($pages);
-	mysqli_free_result($pages);
-
 }
+
+$pages = find_all_pages();
+$page_count = mysqli_num_rows($pages);
+mysqli_free_result($pages);
 
 ?>
 
@@ -43,7 +47,8 @@ if(is_post_request()) {
 
 			<div class="page edit">
 				<h2 class="mt-4 mb-4">Edit Page</h2>
-
+				
+				<?php echo display_errors($errors); ?>
 				<form action="<?php echo url_for('/staff/pages/edit.php?id=' . h(u($page_id))); ?>" method="post">
 					<fieldset>
 						<div class="form-group">
@@ -86,12 +91,11 @@ if(is_post_request()) {
 								Visible
 							</label>
 						</div>
-						<div class="form-group mt-2">
+						
 							<label for="content">Content</label>
 							<textarea class="form-control" rows="8">
 								<?php echo h($page['content']); ?>
 							</textarea>
-						</div>
 						<button type="submit" class="btn btn-info mt-4">Edit Page</button>
 					</fieldset>
 				</form>
