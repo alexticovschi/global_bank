@@ -273,4 +273,14 @@ function delete_page($page_id) {
 	}
 }
 
+function find_pages_by_subject_id($subject_id) {
+	global $db;
+
+	$query = "SELECT * FROM pages WHERE subject_id='" . db_escape($db, $subject_id) . "' ";
+	$query .= "ORDER BY position ASC";
+	$result = mysqli_query($db, $query);
+	confirm_result($result);
+	return $result; 
+}
+
 ?>
