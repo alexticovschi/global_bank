@@ -48,8 +48,9 @@ if(isset($_GET['id'])) {
 		<?php 
 			if(isset($page)) {
 				// Show the page from the database
-				// TODO add html escaping back in 
-				echo $page['content'];
+				// add html escaping back in 
+				$allowed_tags = '<div><img><h1><h2><h3><h4><p><br><strong><em><ul><li>';
+				echo strip_tags($page['content'], $allowed_tags);
 			} else {
 				// Show the homepage
 				// The homepage content could:
