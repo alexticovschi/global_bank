@@ -74,10 +74,16 @@ function validate_page($page) {
 	return $errors;
 }
 
-function find_all_subjects() {
+function find_all_subjects($options=[]) {
 	global $db;
 
+	// if there's a value for visible, use it, else use false
+	$visible = $options['visible'] ?? false;
+
 	$query  = "SELECT * FROM subjects ";
+	if($visible) {
+		$query .= "WHERE visible = true ";
+	}
 	$query .= "ORDER BY position ASC";
 	// echo $query;
 	$result = mysqli_query($db, $query);
@@ -273,10 +279,15 @@ function delete_page($page_id) {
 	}
 }
 
-function find_pages_by_subject_id($subject_id) {
+function find_pages_by_subject_id($subject_id, $options=[]) {
 	global $db;
 
+	$visible = $options['visible'] ?? false;
+
 	$query = "SELECT * FROM pages WHERE subject_id='" . db_escape($db, $subject_id) . "' ";
+	if($visible) {
+		$query .= "AND visible = true ";
+	}
 	$query .= "ORDER BY position ASC";
 	$result = mysqli_query($db, $query);
 	confirm_result($result);
