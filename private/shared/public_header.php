@@ -2,7 +2,10 @@
 <html lang="en">
 <head>
 	<meta charset="UTF-8">
-	<title>Globe Bank <?php if(isset($page_title)) { echo '- ' .h($page_title); } ?></title>
+	<title>
+		Globe Bank <?php if(isset($page_title)) { echo '- ' .h($page_title); } ?>
+		<?php if(isset($preview) && $preview) { echo ' [PREVIEW]'; } ?>
+	</title>
 	<link rel="stylesheet" href="<?php echo url_for('/stylesheets/public.css'); ?>">
 </head>
 <body>

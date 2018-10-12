@@ -19,10 +19,16 @@ $subject = find_subject_by_id($page['subject_id']);
 
 		<div class="page show text-center container">
 			
-			<h3 cl>Page: <?php echo h($page['menu_name']); ?></h3>
+			<h3>Page: <?php echo h($page['menu_name']); ?></h3>
+
+			<div class="actions mt-4">
+				<a class="btn btn-block" style="background-color: #ff6600; color: #fff" href="<?php echo url_for('/index.php?id=' . h(u($page['id'])) . '&preview=true'); ?>" target="_blank">Preview Page</a>
+				<a class="btn btn-info btn-block mt-2" href="<?php echo url_for('/staff/pages/index.php'); ?>">&laquo; Back to List</a>
+			</div>
+
 			<div class="row">
-				<div class="col-md-6 mx-auto">
-					<div class="card mt-4">
+				<div class="col-md-12 mx-auto">
+					<div class="card mt-2 mb-5">
 						<div class="card-body">
 				    		<h5 class="card-title">Subject</h5>
 				      		<p class="card-text"><?php echo h($subject['menu_name']); ?></p>
@@ -48,8 +54,6 @@ $subject = find_subject_by_id($page['subject_id']);
 				      		<p class="card-text"><?php echo h($page['content']); ?></p>
 				    	</div>
 				    </div>
-
-				    <a class="btn btn-info btn-block mt-2" href="<?php echo url_for('/staff/pages/index.php'); ?>">&laquo; Back to List</a>
 				</div>
 			</div>
 		</div>
