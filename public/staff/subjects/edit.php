@@ -19,6 +19,7 @@ if(is_post_request()) {
 
 	$result = update_subject($subject);
 	if($result === true) {
+		$_SESSION['message'] = 'The subject was updated successfully.';
 		redirect_to(url_for('/staff/subjects/show.php?id=' . $id));
 	} else {
 		$errors = $result;
@@ -83,6 +84,13 @@ mysqli_free_result($subject_set);
 		</div>
 	</div>
 </div>
+
+<?php if(isset($_SESSION['message'])) { ?>
+	<script>
+		console.log('session');
+	</script>
+<?php } ?>
+
 
 <?php include(SHARED_PATH . '/staff_footer.php'); ?>
  

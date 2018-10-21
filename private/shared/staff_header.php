@@ -26,3 +26,5 @@
 			<li><a class="btn btn-outline-primary" href="<?php echo url_for('/staff/logout.php'); ?>">Logout</a></li>
 		</ul>
 	</nav>
+
+  <?php echo display_session_message(); ?>
