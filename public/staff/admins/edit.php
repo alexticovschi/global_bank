@@ -29,7 +29,7 @@ if(is_post_request()) {
 
 } else {
 
-	$page = find_admin_by_id($id);
+	$admin = find_admin_by_id($id);
 
 }
 
@@ -41,13 +41,13 @@ if(is_post_request()) {
 <div id="content">
 		<div class="row">
 			<div class="col-md-6 mx-auto">
-				<a class="btn btn-sm btn-info bak-link" href="<?php echo url_for('/staff/admins/index.php') ?>">&laquo; Back to List</a>
+				<a class="btn btn-sm btn-info back-link" href="<?php echo url_for('/staff/admins/index.php') ?>">&laquo; Back to List</a>
 				
 				<div class="admin new">
 					<h2 class="mt-4">Edit Admin</h2>
 
 					<?php echo display_errors($errors); ?>
-					<form action="<?php echo url_for('/staff/admins/new.php'); ?>" method="post">
+					<form action="<?php echo url_for('/staff/admins/edit.php'); ?>" method="post">
 						<fieldset>
                             <div class="form-group">
 								<label for="menu-name">First Name</label>
