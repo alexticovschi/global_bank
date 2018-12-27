@@ -2,6 +2,8 @@
 
 <?php  
 
+require_login();
+
 $id = $_GET['id'] ?? '1';
 $page_id = h($id);
 

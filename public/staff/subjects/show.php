@@ -2,6 +2,9 @@
 
 <?php  
 
+require_login();
+
+
 $id = $_GET['id'] ?? '1';
 $subject_id = h($id);
 

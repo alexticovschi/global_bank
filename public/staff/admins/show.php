@@ -1,6 +1,12 @@
-<?php require_once('../../../private/initialize.php'); ?>
+<?php 
 
-<?php  
+require_once('../../../private/initialize.php'); 
+
+require_login();
+
+?>
+
+<?php   
 
 $id = $_GET['id'] ?? '1';
 $admin_id = h($id);

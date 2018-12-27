@@ -1,6 +1,8 @@
 <?php require_once('../../../private/initialize.php'); ?>
 
 <?php
+	require_login();
+
 	$pages = find_all_pages();
 ?>
 
