@@ -13,10 +13,12 @@ $id = $_GET['id'];
 if(is_post_request()) {
 
     $result = delete_admin($id);
+    $_SESSION['message'] = 'Admin deleted.';
+
     redirect_to(url_for('/staff/admins/index.php'));
 
 } else {
-    $page = find_admin_by_id($id);
+    $admin = find_admin_by_id($id);
 }
 
 ?>
@@ -38,7 +40,7 @@ if(is_post_request()) {
 				</div>
 				<hr>
 				<div class="card-body">
-					<form action="<?php echo url_for('/staff/admins/delete.php?id=' . h(u($page['id']))); ?>" method="post">
+					<form action="<?php echo url_for('/staff/admins/delete.php?id=' . h(u($admin['id']))); ?>" method="post">
 						<input class="btn btn-info" type="submit" name="commit" value="Delete Admin" />
 				    </form>				    
 				</div>				
