@@ -32,6 +32,7 @@ function error_500() {
 
 function redirect_to($location) {
 	header("Location: " . $location);
+	exit;
 } 
 
 function is_post_request() {
@@ -68,7 +69,10 @@ function get_and_clear_session_message() {
 function display_session_message() {
 	$msg = get_and_clear_session_message();
 	if(!is_blank($msg)) {
-	  	return '<div id="message">' . h($msg) . '</div>';
+	  	return 	'<div class="text-center alert alert-success alert-dismissible fade show">
+					<button type="button" class="close" data-dismiss="alert">&times;</button>' 
+					. h($msg) . 
+	  			'</div>';
 	}
 }
 
